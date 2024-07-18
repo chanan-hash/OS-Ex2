@@ -45,15 +45,12 @@ void RUN(char *args_as_string)
         exit(1);
     }
 
-    if (fd == 0)
-    { // child process
+    if (fd == 0) { // child process
         execvp(args[0], args);
         fprintf(stderr, "Exec failed\n");
         free(args);
         exit(1);
-    }
-    else
-    {
+    } else {
         wait(NULL); // wait for the child process to finish
         // free the memory
         free(args);
