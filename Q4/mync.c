@@ -60,22 +60,16 @@ void RUN(char *args_as_string)
 
 void sockets_terminator(int *descriptors)
 {
-    if (descriptors[0] != STDIN_FILENO)
-    {
+    if (descriptors[0] != STDIN_FILENO){
         close(descriptors[0]);
     }
-    if (descriptors[1] != STDOUT_FILENO)
-    {
+    if (descriptors[1] != STDOUT_FILENO){
         close(descriptors[1]);
     }
 }
 
 void handle_alarm(int sig)
-{
-
-    // Terminate the process
-    exit(0);
-}
+{ exit(0); } // Terminate the process
 
 // sending the descriptor to handel, and the portnumber to open the server on
 void TCP_SERVER(int *descriptors, int port, char *b_flag)
