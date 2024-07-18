@@ -54,12 +54,9 @@ void print_board(int board[SIZE][SIZE])
 // Function to check if the board is full
 int is_full(int board[SIZE][SIZE])
 {
-    for (int i = 0; i < SIZE; i++)
-    {
-        for (int j = 0; j < SIZE; j++)
-        {
-            if (board[i][j] == 0)
-            {
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            if (board[i][j] == 0) {
                 return 0; // Not full
             }
         }
@@ -73,27 +70,22 @@ int check_input(char *input)
     int counts[9] = {0};
 
     // Check length
-    if (strlen(input) != 9)
-    {
+    if (strlen(input) != 9) {
         return -1; // Error: wrong length
     }
 
-    for (int i = 0; i < 9; i++)
-    {
+    for (int i = 0; i < 9; i++) {
         int num = input[i] - '0';
 
         // Check if number is between 1 and 9
-        if (num < 1 || num > 9)
-        {
+        if (num < 1 || num > 9) {
             return -2; // Error: number not between 1 and 9
         }
-
+        
         // Check for duplicates
-        if (counts[num - 1] > 0)
-        {
+        if (counts[num - 1] > 0) {
             return -3; // Error: duplicate number
         }
-
         counts[num - 1]++;
     }
 
