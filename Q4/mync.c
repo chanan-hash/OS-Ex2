@@ -18,9 +18,7 @@ void RUN(char *args_as_string)
 {
     // tokenize the string - split by space || ./mync -e "./ttt 123654789" -i TCPS89569 
     char *token = strtok(args_as_string, " ");
-
-    if (token == NULL)
-    {
+    if (token == NULL) {
         fprintf(stderr, "No arguments provided\n");
         exit(1);
     }
@@ -30,8 +28,7 @@ void RUN(char *args_as_string)
     args[n++] = token; // add the first argument
 
     // get the rest of the arguments
-    while (token != NULL)
-    {
+    while (token != NULL) {
         token = strtok(NULL, " ");                               // get the next token (NULL - take the next token from the previous string)
         args = (char **)realloc(args, (n + 1) * sizeof(char *)); // allocate memory for the new argument
         args[n++] = token;                                       // add the new argument and increment the number of arguments
@@ -39,8 +36,7 @@ void RUN(char *args_as_string)
 
     // fork and execute the program
     int fd = fork();
-    if (fd < 0)
-    { // fork failed
+    if (fd < 0) { // fork failed
         fprintf(stderr, "Fork failed\n");
         exit(1);
     }
