@@ -474,7 +474,6 @@ int main(int argc, char *argv[]) {
     descriptors[0] = STDIN_FILENO;   // input fd
     descriptors[1] = STDOUT_FILENO;  // output fd
 
-    // -b cannot be used with -i or -o, not support multiple options
     if (bvalue != NULL && (ivalue != NULL || ovalue != NULL)) {
         fprintf(stderr, "Option -b cannot be used with -i or -o\n");
         fprintf(stderr, "Usage: %s -e <value> [-b <value>] [-i <value>] [-o <value>]\n", argv[0]);

@@ -8,33 +8,26 @@
 int check_winner(int board[SIZE][SIZE])
 {
     // Check rows
-    for (int i = 0; i < SIZE; i++)
-    {
-        if (board[i][0] != 0 && board[i][0] == board[i][1] && board[i][1] == board[i][2])
-        {
+    for (int i = 0; i < SIZE; i++) {
+        if (board[i][0] != 0 && board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
             return board[i][0];
         }
     }
 
     // Check columns
-    for (int i = 0; i < SIZE; i++)
-    {
-        if (board[0][i] != 0 && board[0][i] == board[1][i] && board[1][i] == board[2][i])
-        {
+    for (int i = 0; i < SIZE; i++) {
+        if (board[0][i] != 0 && board[0][i] == board[1][i] && board[1][i] == board[2][i]) {
             return board[0][i];
         }
     }
 
     // Check diagonals
-    if (board[0][0] != 0 && board[0][0] == board[1][1] && board[1][1] == board[2][2])
-    {
+    if (board[0][0] != 0 && board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
         return board[0][0];
     }
-    if (board[0][2] != 0 && board[0][2] == board[1][1] && board[1][1] == board[2][0])
-    {
+    if (board[0][2] != 0 && board[0][2] == board[1][1] && board[1][1] == board[2][0]) {
         return board[0][2];
     }
-
     // No winner
     return 0;
 }
@@ -42,20 +35,15 @@ int check_winner(int board[SIZE][SIZE])
 // Function to print the current board
 void print_board(int board[SIZE][SIZE])
 {
-    for (int i = 0; i < SIZE; i++)
-    {
-        for (int j = 0; j < SIZE; j++)
-        {
-            if (board[i][j] == 1) // computer
-            {
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            if (board[i][j] == 1) { // computer 
                 printf("X ");
             }
-            else if (board[i][j] == -1) // player
-            {
+            else if (board[i][j] == -1) {  // player
                 printf("O ");
             }
-            else
-            {
+            else {
                 printf(". ");
             }
         }
@@ -66,12 +54,9 @@ void print_board(int board[SIZE][SIZE])
 // Function to check if the board is full
 int is_full(int board[SIZE][SIZE])
 {
-    for (int i = 0; i < SIZE; i++)
-    {
-        for (int j = 0; j < SIZE; j++)
-        {
-            if (board[i][j] == 0)
-            {
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            if (board[i][j] == 0) {
                 return 0; // Not full
             }
         }
@@ -85,27 +70,22 @@ int check_input(char *input)
     int counts[9] = {0};
 
     // Check length
-    if (strlen(input) != 9)
-    {
+    if (strlen(input) != 9) {
         return -1; // Error: wrong length
     }
 
-    for (int i = 0; i < 9; i++)
-    {
+    for (int i = 0; i < 9; i++) {
         int num = input[i] - '0';
 
         // Check if number is between 1 and 9
-        if (num < 1 || num > 9)
-        {
+        if (num < 1 || num > 9) {
             return -2; // Error: number not between 1 and 9
         }
-
+        
         // Check for duplicates
-        if (counts[num - 1] > 0)
-        {
+        if (counts[num - 1] > 0) {
             return -3; // Error: duplicate number
         }
-
         counts[num - 1]++;
     }
 
@@ -213,8 +193,7 @@ int main(int argc, char *argv[])
         turn++;
 
         int winner = check_winner(board);
-        if (winner != 0)
-        {
+        if (winner != 0) {
             if (winner == 1)
             {
                 printf("I win\n");

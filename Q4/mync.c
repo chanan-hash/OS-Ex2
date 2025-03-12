@@ -17,12 +17,8 @@
 void RUN(char *args_as_string)
 {
     // tokenize the string - split by space || ./mync -e "./ttt 123654789" -i TCPS89569 
-
-
     char *token = strtok(args_as_string, " ");
-
-    if (token == NULL)
-    {
+    if (token == NULL) {
         fprintf(stderr, "No arguments provided\n");
         exit(1);
     }
@@ -32,8 +28,7 @@ void RUN(char *args_as_string)
     args[n++] = token; // add the first argument
 
     // get the rest of the arguments
-    while (token != NULL)
-    {
+    while (token != NULL) {
         token = strtok(NULL, " ");                               // get the next token (NULL - take the next token from the previous string)
         args = (char **)realloc(args, (n + 1) * sizeof(char *)); // allocate memory for the new argument
         args[n++] = token;                                       // add the new argument and increment the number of arguments
@@ -41,21 +36,17 @@ void RUN(char *args_as_string)
 
     // fork and execute the program
     int fd = fork();
-    if (fd < 0)
-    { // fork failed
+    if (fd < 0) { // fork failed
         fprintf(stderr, "Fork failed\n");
         exit(1);
     }
 
-    if (fd == 0)
-    { // child process
+    if (fd == 0) { // child process
         execvp(args[0], args);
         fprintf(stderr, "Exec failed\n");
         free(args);
         exit(1);
-    }
-    else
-    {
+    } else {
         wait(NULL); // wait for the child process to finish
         // free the memory
         free(args);
@@ -65,22 +56,16 @@ void RUN(char *args_as_string)
 
 void sockets_terminator(int *descriptors)
 {
-    if (descriptors[0] != STDIN_FILENO)
-    {
+    if (descriptors[0] != STDIN_FILENO){
         close(descriptors[0]);
     }
-    if (descriptors[1] != STDOUT_FILENO)
-    {
+    if (descriptors[1] != STDOUT_FILENO){
         close(descriptors[1]);
     }
 }
 
 void handle_alarm(int sig)
-{
-
-    // Terminate the process
-    exit(0);
-}
+{ exit(0); } // Terminate the process
 
 // sending the descriptor to handel, and the portnumber to open the server on
 void TCP_SERVER(int *descriptors, int port, char *b_flag)
